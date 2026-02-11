@@ -370,6 +370,48 @@
 
 <body>
 
+    <!-- LOCK SCREEN (Cuenta atrás hasta el 12 Feb 00:00) -->
+    <div id="lock-screen"
+        style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; color:#d4af37; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <h1 style="font-family:'Cinzel', serif; font-size:2rem; margin-bottom:20px; color:white;">Tu regalo se
+            desbloquea en:</h1>
+        <div id="lock-timer"
+            style="font-size:3.5rem; font-family:'Montserrat', sans-serif; font-weight:bold; color:#d4af37;">00:00:00
+        </div>
+        <p style="margin-top:20px; color:rgba(255,255,255,0.7); font-family:'Montserrat', sans-serif; max-width:80%;">
+            (Espera a las 00:00 del 12 de Febrero)</p>
+    </div>
+
+    <script>
+        (function () {
+            const target = new Date('2026-02-12T00:00:00'); // Medianoche del 12
+            const lockScreen = document.getElementById('lock-screen');
+            const timerEl = document.getElementById('lock-timer');
+
+            function update() {
+                const now = new Date();
+                const diff = target - now;
+
+                if (diff <= 0) {
+                    lockScreen.style.display = 'none'; // Desbloquear!
+                    return;
+                }
+
+                const h = Math.floor(diff / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+                timerEl.innerText =
+                    (h < 10 ? '0' + h : h) + ":" +
+                    (m < 10 ? '0' + m : m) + ":" +
+                    (s < 10 ? '0' + s : s);
+
+                requestAnimationFrame(update);
+            }
+            update();
+        })();
+    </script>
+
     <div class="ocean-bg"></div>
     <div class="light-rays"></div>
 
