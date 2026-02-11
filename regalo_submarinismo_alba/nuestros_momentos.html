@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Historia 💙</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --deep-blue: #0f2027;
+            --ocean-blue: #203a43;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--deep-blue);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            color: white;
+        }
+
+        /* --- FONDO ANIMADO (Igual que tarjeta cumple) --- */
+        .ocean-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% -20%, #1a4f6e, #0f2027 80%);
+            z-index: -2;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(212, 175, 55, 0.4);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(110vh) scale(0);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* --- CONTENIDO --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        p.intro {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            line-height: 1.6;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* --- GALERÍA ESTILO PREMIUM --- */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding-bottom: 50px;
+        }
+
+        .card-frame {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 15px 60px 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+            position: relative;
+            width: 280px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .card-frame::after {
+            /* Marco dorado fino */
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            pointer-events: none;
+        }
+
+        .card-frame:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold);
+            z-index: 100;
+        }
+
+        .photo-area {
+            width: 100%;
+            height: 350px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .photo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card-frame:hover .photo-area img {
+            transform: scale(1.1);
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- NOTA FINAL --- */
+        .love-note {
+            margin-top: 50px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 40px;
+            border: 1px solid var(--gold);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .love-note::before,
+        .love-note::after {
+            content: "✦";
+            color: var(--gold);
+            font-size: 2rem;
+            position: absolute;
+        }
+
+        .love-note::before {
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .love-note::after {
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .love-note h3 {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-top: 0;
+            letter-spacing: 3px;
+        }
+
+        .love-note p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .card-frame {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ocean-bg"></div>
+    <div class="particles" id="particles-js"></div>
+
+    <div class="container">
+        <h1>Nuestra Historia</h1>
+        <p class="intro">
+            Hay momentos que valen por una vida entera.<br>
+            Aquí guardo algunos de mis favoritos contigo.
+        </p>
+
+        <div class="gallery">
+            <!-- FOTO 1 -->
+            <div class="card-frame" onclick="this.classList.toggle('active')">
+                <div class="photo-area">
+                    <!-- FOTO 1: Guarda tu foto como 'foto1.jpg' en la carpeta 'fotos' -->
+                    <img src="./fotos/foto1.jpg"
+                        onerror="this.src='https://via.placeholder.com/400x500?text=Tu+Foto+1'; this.style.opacity='0.5'">
+                </div>
+                <div class="caption">El Comienzo</div>
+            </div>
+
+            <!-- FOTO 2 -->
+            <div class="card-frame">
+                <div class="photo-area">
+                    <img src="./fotos/foto2.jpg"
+                        onerror="this.src='https://via.placeholder.com/400x500?text=Tu+Foto+2'; this.style.opacity='0.5'">
+                </div>
+                <div class="caption">Risas Juntos</div>
+            </div>
+
+            <!-- FOTO 3 -->
+            <div class="card-frame">
+                <div class="photo-area">
+                    <img src="./fotos/foto3.jpg"
+                        onerror="this.src='https://via.placeholder.com/400x500?text=Tu+Foto+3'; this.style.opacity='0.5'">
+                </div>
+                <div class="caption">Nuestra Aventura</div>
+            </div>
+
+            <!-- FOTO 4 -->
+            <div class="card-frame">
+                <div class="photo-area">
+                    <img src="./fotos/foto4.jpg"
+                        onerror="this.src='https://via.placeholder.com/400x500?text=Tu+Foto+4'; this.style.opacity='0.5'">
+                </div>
+                <div class="caption">Te Quiero</div>
+            </div>
+        </div>
+
+        <div class="love-note">
+            <h3>Feliz San Valentín</h3>
+            <p>
+                Gracias por llenar mi vida de estos momentos.
+                No necesito nada más que seguir sumando fotos a este álbum.
+                <br><br>
+                <strong>Tú y yo, siempre.</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Generar partículas doradas
+        const container = document.getElementById('particles-js');
+
+        function createParticle() {
+            const p = document.createElement('div');
+            p.classList.add('particle');
+
+            const size = Math.random() * 5 + 2;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = Math.random() * 10 + 10 + 's';
+            p.style.opacity = Math.random() * 0.5 + 0.2;
+
+            container.appendChild(p);
+
+            setTimeout(() => { p.remove(); }, 20000);
+        }
+
+        setInterval(createParticle, 300);
+    </script>
+</body>
+
+</html>

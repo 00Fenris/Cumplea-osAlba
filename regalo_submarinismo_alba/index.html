@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Feliz Cumpleaños Alba ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #030b1a;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        /* ============ INTRO SECTION ============ */
+        .intro-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(180deg,
+                    #030b1a 0%,
+                    #051c38 30%,
+                    #0a3a5e 60%,
+                    #0f4c6e 100%);
+        }
+
+        /* Rayos de luz desde la superficie */
+        .light-rays-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 30% 0%, rgba(100, 200, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 0%, rgba(100, 200, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Contenido intro */
+        .intro-content {
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .birthday-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 50px rgba(255, 107, 157, 0.6);
+            }
+        }
+
+        .intro-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 12vw, 6rem);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #a8edea 50%, #fed6e3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 30px rgba(168, 237, 234, 0.5));
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from {
+                filter: drop-shadow(0 0 30px rgba(168, 237, 234, 0.5));
+            }
+
+            to {
+                filter: drop-shadow(0 0 50px rgba(254, 214, 227, 0.7));
+            }
+        }
+
+        .intro-subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            margin-bottom: 50px;
+        }
+
+        .heart-divider {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.2);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+
+            75% {
+                transform: scale(1.3);
+            }
+        }
+
+        .dates-row {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .date-bubble {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 20px 30px;
+            min-width: 140px;
+            transition: all 0.4s ease;
+        }
+
+        .date-bubble:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .date-bubble .icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .date-bubble .day {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .date-bubble .label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 3px;
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+
+            0%,
+            100% {
+                top: 8px;
+                opacity: 1;
+            }
+
+            50% {
+                top: 25px;
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        /* ============ UNDERWATER SECTION ============ */
+        .underwater-section {
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(180deg,
+                    #0f4c6e 0%,
+                    #0d5d85 20%,
+                    #0b6e9c 40%,
+                    #1a8cba 60%,
+                    #2eb8c4 80%,
+                    #5bd1d7 100%);
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        /* Burbujas flotantes */
+        .bubbles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: radial-gradient(circle at 30% 30%,
+                    rgba(255, 255, 255, 0.9),
+                    rgba(255, 255, 255, 0.4) 40%,
+                    rgba(255, 255, 255, 0.1) 70%,
+                    transparent);
+            border-radius: 50%;
+            animation: riseBubble linear infinite;
+            box-shadow:
+                inset -3px -3px 15px rgba(255, 255, 255, 0.5),
+                inset 5px 5px 15px rgba(0, 100, 150, 0.15);
+        }
+
+        @keyframes riseBubble {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0.7;
+            }
+
+            25% {
+                transform: translateY(-25vh) translateX(15px) scale(1.05);
+            }
+
+            50% {
+                transform: translateY(-50vh) translateX(-10px) scale(0.95);
+                opacity: 0.5;
+            }
+
+            75% {
+                transform: translateY(-75vh) translateX(20px) scale(1.02);
+            }
+
+            100% {
+                transform: translateY(-110vh) translateX(0) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* Peces animados */
+        .fish-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .fish-group {
+            position: absolute;
+            animation: swim 25s linear infinite;
+        }
+
+        .fish-group span {
+            font-size: 2rem;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        @keyframes swim {
+            0% {
+                left: -200px;
+            }
+
+            100% {
+                left: calc(100% + 200px);
+            }
+        }
+
+        /* Partículas marinas */
+        .marine-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: floatParticle 20s ease-in-out infinite;
+        }
+
+        @keyframes floatParticle {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.3;
+            }
+
+            25% {
+                transform: translate(30px, -20px) rotate(90deg);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translate(-20px, -40px) rotate(180deg);
+                opacity: 0.4;
+            }
+
+            75% {
+                transform: translate(15px, -10px) rotate(270deg);
+                opacity: 0.5;
+            }
+        }
+
+        /* Rayos de luz */
+        .light-rays {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+                repeating-linear-gradient(95deg,
+                    transparent 0px,
+                    transparent 100px,
+                    rgba(255, 255, 255, 0.03) 100px,
+                    rgba(255, 255, 255, 0.03) 200px);
+            pointer-events: none;
+            animation: lightMove 10s ease-in-out infinite;
+        }
+
+        @keyframes lightMove {
+
+            0%,
+            100% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Gift Card Principal */
+        .gift-card-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .gift-card {
+            background: linear-gradient(145deg,
+                    rgba(255, 255, 255, 0.2) 0%,
+                    rgba(255, 255, 255, 0.08) 50%,
+                    rgba(255, 255, 255, 0.15) 100%);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 40px;
+            padding: 50px 40px;
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* Efecto shimmer */
+        .gift-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(45deg,
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.15) 50%,
+                    transparent 70%);
+            animation: shimmer 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-50%) translateY(-50%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(50%) translateY(50%) rotate(45deg);
+            }
+        }
+
+        .diving-icon {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .diving-icon span {
+            font-size: 5rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        .gift-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 2.8rem);
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #a8edea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gift-description {
+            text-align: center;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-text {
+            background: linear-gradient(90deg, #ff8fa3, #ffc3a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        /* Lista de experiencias */
+        .experience-list {
+            list-style: none;
+            margin: 30px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .experience-list li {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.95);
+            transition: all 0.3s ease;
+        }
+
+        .experience-list li:hover {
+            transform: translateX(10px);
+            color: white;
+        }
+
+        .experience-list li:last-child {
+            border-bottom: none;
+        }
+
+        .experience-list li .emoji {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        /* Botón CTA */
+        .cta-wrapper {
+            margin-top: 35px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 20px 35px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c24b77 100%);
+            color: white;
+            border: none;
+            border-radius: 60px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 15px 40px rgba(255, 107, 157, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 25px 60px rgba(255, 107, 157, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: btnShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes btnShimmer {
+            0% {
+                left: -100%;
+            }
+
+            50%,
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* ============ MESSAGE SECTION ============ */
+        .message-section {
+            padding: 80px 20px;
+            background: linear-gradient(180deg,
+                    #5bd1d7 0%,
+                    #87dcdf 50%,
+                    #b8e8ea 100%);
+            position: relative;
+        }
+
+        .message-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 80px rgba(0, 50, 70, 0.15);
+            position: relative;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: -20px;
+            left: 40px;
+            font-size: 4rem;
+            color: #ff6b9d;
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .message-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #1a5276;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ff6b9d;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            padding: 50px 20px;
+            background: linear-gradient(180deg, #b8e8ea 0%, #d4f1f4 100%);
+            text-align: center;
+        }
+
+        .footer-hearts {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: heartFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .footer-text {
+            color: #0f4c6e;
+            font-size: 1rem;
+        }
+
+        .footer-text strong {
+            color: #ff6b9d;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .gift-card {
+                padding: 35px 25px;
+                border-radius: 30px;
+            }
+
+            .dates-row {
+                gap: 15px;
+            }
+
+            .date-bubble {
+                min-width: 120px;
+                padding: 15px 20px;
+            }
+
+            .message-card {
+                padding: 40px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== INTRO SECTION ===== -->
+    <section class="intro-section">
+        <div class="light-rays-top"></div>
+
+        <div class="intro-content">
+            <div class="birthday-badge">🎉 ¡Día Especial!</div>
+
+            <h1 class="intro-title">Feliz Cumpleaños Alba</h1>
+
+            <p class="intro-subtitle">Este es tu regalo especial...</p>
+
+            <div class="heart-divider">💖</div>
+
+            <div class="dates-row">
+                <div class="date-bubble">
+                    <span class="icon">🎂</span>
+                    <div class="day">12</div>
+                    <div class="label">Febrero - Tu día</div>
+                </div>
+                <div class="date-bubble">
+                    <span class="icon">💝</span>
+                    <div class="day">14</div>
+                    <div class="label">San Valentín</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator"
+            onclick="document.querySelector('.underwater-section').scrollIntoView({behavior:'smooth'})">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ===== UNDERWATER SECTION ===== -->
+    <section class="underwater-section">
+        <div class="light-rays"></div>
+        <div class="bubbles-container" id="bubbles"></div>
+        <div class="fish-container" id="fish"></div>
+        <div class="marine-particles" id="particles"></div>
+
+        <div class="gift-card-container">
+            <div class="gift-card">
+                <div class="diving-icon">
+                    <span>🤿</span>
+                </div>
+
+                <h2 class="gift-title">Bautismo VIP en Jávea</h2>
+
+                <p class="gift-description">
+                    Este año nos vamos a <span class="highlight-text">Jávea</span>.
+                    Te he regalado una experiencia completa de 3 horas para descubrir
+                    juntos el fondo marino en una de las calas más bonitas de Alicante.
+                </p>
+
+                <ul class="experience-list">
+                    <li>
+                        <span class="emoji">🎓</span>
+                        <span>Masterclass con instructor PADI</span>
+                    </li>
+                    <li>
+                        <span class="emoji">🌊</span>
+                        <span>Inmersión en cala (45 min en el agua)</span>
+                    </li>
+                    <li>
+                        <span class="emoji">🐠</span>
+                        <span>Equipo completo incluido</span>
+                    </li>
+                    <li>
+                        <span class="emoji">💑</span>
+                        <span>Experiencia exclusiva para los dos</span>
+                    </li>
+                </ul>
+
+                <div class="cta-wrapper">
+                    <a href="#" class="cta-button">
+                        🎫 Vale por: TU EXPERIENCIA
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MESSAGE SECTION ===== -->
+    <section class="message-section">
+        <div class="message-card">
+            <span class="quote-icon">"</span>
+            <p class="message-text">
+                Porque contigo cada momento se convierte en una aventura increíble.
+                Este año quiero que exploremos juntos un mundo completamente nuevo,
+                bajo las olas, donde solo existamos tú y yo rodeados de la magia del mar.
+                <br><br>
+                Gracias por ser mi persona favorita en todo el mundo.
+                Te quiero infinito. 💙
+            </p>
+            <p class="signature">Con todo mi amor ❤️</p>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-hearts">💙🤍💙</div>
+        <p class="footer-text">
+            <strong>Febrero 2026</strong> • Hecho con amor para la persona más especial
+        </p>
+    </footer>
+
+    <script>
+        // ===== GENERAR BURBUJAS =====
+        function createBubbles() {
+            const container = document.getElementById('bubbles');
+            const count = 30;
+
+            for (let i = 0; i < count; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+
+                const size = Math.random() * 35 + 12;
+                const left = Math.random() * 100;
+                const duration = Math.random() * 12 + 10;
+                const delay = Math.random() * 15;
+
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${left}%`;
+                bubble.style.animationDuration = `${duration}s`;
+                bubble.style.animationDelay = `${delay}s`;
+
+                container.appendChild(bubble);
+            }
+        }
+
+        // ===== GENERAR PECES =====
+        function createFish() {
+            const container = document.getElementById('fish');
+            const fishTypes = ['🐠', '🐟', '🐡', '🦈', '🐙', '🦑'];
+            const positions = [15, 30, 45, 60, 75, 85];
+
+            positions.forEach((pos, index) => {
+                const group = document.createElement('div');
+                group.className = 'fish-group';
+                group.style.top = `${pos}%`;
+                group.style.animationDelay = `${index * -4}s`;
+                group.style.animationDuration = `${20 + Math.random() * 15}s`;
+
+                // Grupo de 2-4 peces
+                const fishCount = Math.floor(Math.random() * 3) + 2;
+                for (let i = 0; i < fishCount; i++) {
+                    const fish = document.createElement('span');
+                    fish.textContent = fishTypes[Math.floor(Math.random() * fishTypes.length)];
+                    fish.style.fontSize = `${1.5 + Math.random() * 1.5}rem`;
+                    group.appendChild(fish);
+                }
+
+                container.appendChild(group);
+            });
+        }
+
+        // ===== GENERAR PARTÍCULAS =====
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const count = 40;
+
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const size = Math.random() * 3 + 2;
+
+                particle.style.left = `${left}%`;
+                particle.style.top = `${top}%`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.animationDelay = `${delay}s`;
+
+                container.appendChild(particle);
+            }
+        }
+
+        // Inicializar todo
+        createBubbles();
+        createFish();
+        createParticles();
+
+        // Efecto parallax suave en scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const intro = document.querySelector('.intro-content');
+            if (intro && scrolled < window.innerHeight) {
+                intro.style.transform = `translateY(${scrolled * 0.3}px)`;
+                intro.style.opacity = 1 - (scrolled / window.innerHeight);
+            }
+        });
+    </script>
+</body>
+
+</html>
+</CodeContent>
+<parameter name="EmptyFile">false

@@ -1,0 +1,27 @@
+# Ignore everything
+*
+
+# Whitelist website files
+!*.html
+!*.css
+!*.js
+!*.md
+!*.svg
+!*.png
+!*.jpg
+!*.jpeg
+!*.gif
+!LICENSE
+!.gitignore
+
+# Whitelist specific directories
+!regalo_submarinismo_alba/
+!regalo_submarinismo_alba/*
+!regalo_submarinismo_alba/fotos/
+!regalo_submarinismo_alba/fotos/*
+
+# Explicitly ignore heavy/private files even if they match above (just in case)
+WhatsApp Chat - Alba*.zip
+WhatsApp Chat - Alba*
+*.txt
+*.py

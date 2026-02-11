@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEBUG Tarjeta</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: sans-serif;
+        }
+
+        #debug-console {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            z-index: 9999;
+            overflow-y: scroll;
+            font-size: 12px;
+            padding: 5px;
+            border-bottom: 2px solid white;
+        }
+
+        .log-line {
+            border-bottom: 1px solid #444;
+            padding: 2px 0;
+        }
+
+        /* Estilos básicos de la tarjeta original */
+        .seq-text {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 50vh;
+            transition: opacity 1s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="debug-console">DEBUG CONSOLE STARTED...<br></div>
+
+    <div id="intro-sequence">
+        <button id="start-btn" style="display:none; margin-top: 50vh; font-size: 20px; padding: 20px;">ABRIR
+            REGALO</button>
+    </div>
+
+    <script>
+        function log(msg) {
+            const c = document.getElementById('debug-console');
+            const d = new Date();
+            const time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + "." + d.getMilliseconds();
+            c.innerHTML += `<div class="log-line">[${time}] ${msg}</div>`;
+            c.scrollTop = c.scrollHeight;
+            console.log(msg);
+        }
+
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
+            log("ERROR: " + msg + " line: " + lineNo);
+            return false;
+        };
+
+        log("Script parsing started");
+
+        const FRASES = ["Hola Alba...", "Prueba de texto 1", "Prueba de texto 2", "Fin"];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            log("DOM Content Loaded Event Fired");
+
+            const container = document.getElementById('intro-sequence');
+            const btn = document.getElementById('start-btn');
+
+            if (!container) log("ERROR: Container not found");
+            if (!btn) log("ERROR: Button not found");
+
+            const textEl = document.createElement('div');
+            textEl.className = 'seq-text';
+            textEl.innerText = "INICIO DEBUG";
+            container.insertBefore(textEl, btn);
+
+            let index = 0;
+
+            function next() {
+                log("Showing phrase index: " + index);
+                if (index >= FRASES.length) {
+                    log("Sequence finished. Showing button.");
+                    textEl.style.display = 'none';
+                    btn.style.display = 'block';
+                    return;
+                }
+
+                textEl.innerText = FRASES[index];
+                textEl.style.opacity = '1';
+
+                setTimeout(() => {
+                    log("Fading out phrase: " + index);
+                    textEl.style.opacity = '0';
+                    index++;
+                    setTimeout(next, 1000);
+                }, 2000);
+            }
+
+            log("Starting sequence...");
+            next();
+        });
+
+        // Failsafe test
+        setTimeout(() => {
+            log("10s Safety Check Triggered");
+        }, 10000);
+    </script>
+</body>
+
+</html>

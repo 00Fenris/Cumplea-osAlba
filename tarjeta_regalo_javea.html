@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felices 22 Alba ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --deep-blue: #0f2027;
+            --ocean-blue: #203a43;
+            --light-blue: #2c5364;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--deep-blue);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- BACKGROUND EFFECTS --- */
+        .ocean-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% -20%, #1a4f6e, #0f2027 80%);
+            z-index: -2;
+        }
+
+        .light-rays {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/yagoestevez/fcc-portfolio/master/src/Images/light_rays.png') no-repeat center top;
+            background-size: cover;
+            opacity: 0.4;
+            animation: rays 20s infinite alternate;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes rays {
+            from {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            to {
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        /* --- INTRO SEQUENCE --- */
+        #intro-sequence {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            /* Más transparencia para ver el fondo */
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .seq-text {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+            position: absolute;
+            width: 80%;
+        }
+
+        .start-btn {
+            margin-top: 50px;
+            padding: 20px 50px;
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 2001;
+            border-radius: 50px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            animation: pulse-gold 2s infinite;
+        }
+
+        @keyframes pulse-gold {
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+                transform: scale(1);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+                transform: scale(1.05);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+                transform: scale(1);
+            }
+        }
+
+        .start-btn:hover {
+            background: var(--gold);
+            color: var(--deep-blue);
+            box-shadow: 0 0 30px var(--gold);
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        /* --- RESPONSIVE LAYOUT (MOBILE FIRST COMPATIBLE) --- */
+        #gift-container {
+            perspective: 1000px;
+            opacity: 0;
+            transition: opacity 2s ease;
+            display: none;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .ticket-wrap {
+            width: 100%;
+            max-width: 850px;
+            /* Altura automática para adaptarse al móvil */
+            height: auto;
+            min-height: 350px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg) rotateY(0deg);
+        }
+
+        .ticket {
+            width: 100%;
+            height: 100%;
+            min-height: inherit;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: row;
+            /* Default Desktop */
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Efecto brillo */
+        .ticket::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+        .ticket-wrap:hover .ticket::before {
+            left: 100%;
+            transition: 0.8s;
+        }
+
+        /* Left Side (Photo/Main) */
+        .ticket-left {
+            flex: 2;
+            padding: 40px;
+            border-right: 2px dashed rgba(255, 255, 255, 0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .gold-accent {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1.main-title {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 4.5rem;
+            margin: 10px 0;
+            background: linear-gradient(to right, #fff, #ddd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            line-height: 1;
+        }
+
+        .message-body {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            border-left: 3px solid var(--gold);
+            padding-left: 15px;
+            margin-top: 10px;
+        }
+
+        /* Right Side (Details) */
+        .ticket-right {
+            flex: 1;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            text-align: right;
+            position: relative;
+            border-left: none;
+        }
+
+        .ticket-right::after {
+            content: "21";
+            position: absolute;
+            font-family: 'Cinzel', serif;
+            font-size: 10rem;
+            /* Más pequeño para que quepa */
+            color: rgba(255, 255, 255, 0.03);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .info-group {
+            z-index: 1;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: white;
+            margin-top: 5px;
+        }
+
+        .qr-mock {
+            width: 80px;
+            height: 80px;
+            background: white;
+            margin-left: auto;
+            border-radius: 5px;
+            padding: 5px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            opacity: 0.9;
+            z-index: 2;
+        }
+
+        .qr-dot {
+            background: #0f2027;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- MOBILE STYLES --- */
+        @media (max-width: 768px) {
+            .ticket {
+                flex-direction: column;
+            }
+
+            .ticket-left {
+                border-right: none;
+                border-bottom: 2px dashed rgba(255, 255, 255, 0.2);
+                padding: 30px 20px;
+                text-align: center;
+            }
+
+            .ticket-right {
+                padding: 30px 20px;
+                text-align: center;
+                gap: 15px;
+            }
+
+            h1.main-title {
+                font-size: 3rem;
+                /* Más pequeño en móvil */
+            }
+
+            .message-body {
+                font-size: 0.9rem;
+                text-align: left;
+                /* Mantener lectura fácil */
+                margin-top: 20px;
+            }
+
+            .qr-mock {
+                margin: 0 auto;
+                /* Centrar QR */
+            }
+
+            .seq-text {
+                font-size: 1.5rem;
+                /* Ajustar texto intro */
+                width: 90%;
+            }
+        }
+
+        /* Bubbles */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            z-index: -1;
+            /* Detras de la tarjeta pero delante del fondo */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ocean-bg"></div>
+    <div class="light-rays"></div>
+
+    <!-- INTRO SEQUENCE -->
+    <div id="intro-sequence">
+        <!-- Textos generados dinámicamente por JS -->
+
+        <button id="start-btn" class="start-btn" onclick="revealGift()" style="pointer-events: none;">ABRIR
+            REGALO</button>
+    </div>
+
+    <!-- MAIN GIFT (Hidden initially) -->
+    <div id="gift-container">
+        <!-- data-tilt library for 3D effect -->
+        <div class="ticket-wrap" id="ticket-card" data-tilt data-tilt-max="10" data-tilt-glare
+            data-tilt-max-glare="0.5">
+            <div class="ticket">
+                <!-- Left Content -->
+                <div class="ticket-left">
+                    <div>
+                        <div class="gold-accent">BOARDING PASS • 12 FEB 2026</div>
+                        <h1 class="main-title">Felices 22 Alba</h1>
+                    </div>
+
+                    <div class="message-body">
+                        "Porque quiero que estemos juntos en tu cumpleaños, en el mío y en todos los momentos buenos que
+                        están por venir.<br>
+                        Gracias por ser mi persona favorita.<br>
+                        <strong>Te quiero un mundo ❤️</strong>"
+                    </div>
+
+                    <div style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7; letter-spacing: 1px;">
+                        TICKET VÁLIDO: 90 DÍAS
+                    </div>
+                </div>
+
+                <!-- Right Content -->
+                <div class="ticket-right">
+                    <div class="info-group">
+                        <div class="label">DESTINO</div>
+                        <div class="value">Fondo Marino Jávea</div>
+                    </div>
+                    <div class="info-group">
+                        <div class="label">MISIÓN</div>
+                        <div class="value">Bautismo VIP (3h)</div>
+                    </div>
+                    <div class="info-group">
+                        <div class="label">PASAJEROS</div>
+                        <div class="value" style="color: var(--gold);">Tú y Yo</div>
+                    </div>
+
+                    <!-- Fake QR -->
+                    <div class="qr-mock">
+                        <div class="qr-dot" style="grid-column: 1/3; grid-row: 1/3"></div>
+                        <div class="qr-dot" style="grid-column: 4/5; grid-row: 1/2"></div>
+                        <div class="qr-dot" style="grid-column: 3/5; grid-row: 3/5"></div>
+                        <div class="qr-dot" style="grid-column: 1/2; grid-row: 4/5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- SECUENCIA DE HISTORIA (5 MINUTOS APROX) ---
+        // Puedes añadir o quitar frases aquí. Cada frase dura unos 10-12 segundos en total.
+        const FRASES = [
+            "Hola Alba...",
+            "Hoy es un día muy importante.",
+            "22 años...",
+            "Toda una vida por delante.",
+            "He querido preparar esto...",
+            "Para recordarte lo increíble que eres.",
+            "Me he puesto a pensar en nosotros...",
+            "En todo lo que hemos vivido.",
+            "Nuestros viajes...",
+            "Esa escapada a Portugal...",
+            "Tus risas...",
+            "Incluso tus intentos de cocinar (que sabes que me encantan)...",
+            "Y todas esas pequeñas cosas que te hacen tú.",
+            "Recuerdo cuando dijimos...",
+            "Que queríamos estar juntos en nuestros cumpleaños.",
+            "En los momentos buenos...",
+            "Y en los difíciles.",
+            "Y aquí estamos.",
+            "Cumpliendo promesas.",
+            "Eres mi persona favorita en el mundo.",
+            "Y te mereces el mundo entero.",
+            "Pero por hoy...",
+            "Te voy a regalar un trocito de él.",
+            "Un mundo nuevo...",
+            "Bajo las olas...",
+            "Donde solo existamos tú y yo.",
+            "Gracias por ser única.",
+            "Te quiero un mundo, Alba.",
+            "Felices 22.",
+            "Y ahora...",
+            "👇 Por favor, abre tu regalo 👇"
+        ];
+
+        // Duración por frase (lectura + pausa) - MÁS RÁPIDO PARA QUE NO ABURRA
+        const DISPLAY_TIME = 4000; // 4 segundos lectura
+        const FADE_TIME = 1000;    // 1 segundo transición
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // EJECUCIÓN INMEDIATA (SIN ESPERAR A LOAD NI NADA)
+            const container = document.getElementById('intro-sequence');
+            const btn = document.getElementById('start-btn');
+
+            // Failsafe Visual: Si a los 5 min (300s) no se ve el botón ni texto, forzar botón
+            setTimeout(() => {
+                if (window.getComputedStyle(btn).opacity !== '1' && container.style.display !== 'none') {
+                    document.querySelectorAll('.seq-text').forEach(e => e.style.display = 'none');
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'all';
+                }
+            }, 300000);
+
+            // Crear elemento de texto dinámico
+            const textEl = document.createElement('div');
+            textEl.className = 'seq-text';
+            textEl.style.position = 'relative';
+            textEl.style.opacity = '1'; // EMPIEZA VISIBLE
+            textEl.style.transform = 'translateY(0)'; // SIN DESPLAZAMIENTO INICIAL
+            textEl.innerText = FRASES[0]; // PRIMERA FRASE DIRECTA
+            container.insertBefore(textEl, btn);
+
+            // Limpiar otros textos si los hubiera
+            const existingTexts = container.querySelectorAll('.seq-text:not(#start-btn)');
+            existingTexts.forEach(el => {
+                if (el !== textEl) el.remove();
+            });
+
+            let index = 0;
+
+            function showNextPhrase() {
+                // Si acabamos de mostrar la 0 (hardcoded), esperamos y pasamos a la siguiente fase
+                if (index === 0 && textEl.innerText === FRASES[0]) {
+                    setTimeout(() => {
+                        textEl.style.opacity = '0';
+                        textEl.style.transform = 'translateY(-20px)';
+                        index++;
+                        setTimeout(showNextPhrase, FADE_TIME);
+                    }, DISPLAY_TIME);
+                    return;
+                }
+
+                if (index >= FRASES.length) {
+                    // Fin de la secuencia -> Muestra BOTÓN
+                    textEl.style.display = 'none'; // Ocultar texto final para que solo quede el botón
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'all';
+                    return;
+                }
+
+                // Actualizar texto
+                textEl.innerText = FRASES[index];
+
+                // Fade In
+                textEl.style.transform = 'translateY(0)';
+                textEl.style.opacity = '1';
+
+                // Si es la última frase, NO hacemos fade out automático
+                if (index === FRASES.length - 1) {
+                    setTimeout(() => {
+                        textEl.style.marginBottom = "20px"; // Dar espacio
+                        btn.style.opacity = '1';
+                        btn.style.pointerEvents = 'all';
+                    }, 2000);
+                    return;
+                }
+
+                // Esperar lectura normal
+                setTimeout(() => {
+                    // Fade Out
+                    textEl.style.opacity = '0';
+                    textEl.style.transform = 'translateY(-20px)';
+
+                    index++;
+                    // Pausa antes del siguiente
+                    setTimeout(showNextPhrase, FADE_TIME);
+                }, DISPLAY_TIME);
+            }
+
+            // Arrancar secuencia
+            showNextPhrase();
+        });
+
+        function revealGift() {
+            const intro = document.getElementById('intro-sequence');
+            const giftContainer = document.getElementById('gift-container');
+
+            // Fade out intro
+            intro.style.opacity = '0';
+            intro.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                intro.style.display = 'none';
+
+                // Mostrar regalo
+                giftContainer.style.display = 'flex';
+                void giftContainer.offsetWidth; // Trigger reflow
+                giftContainer.style.opacity = '1';
+
+                // Iniciar burbujas
+                startBubbles();
+            }, 2000);
+        }
+
+        // --- BURBUJAS ANIMADAS ---
+        function startBubbles() {
+            setInterval(() => {
+                const b = document.createElement('div');
+                b.className = 'bubble';
+                const size = Math.random() * 20 + 5;
+                b.style.width = size + 'px';
+                b.style.height = size + 'px';
+                b.style.left = Math.random() * 100 + '%';
+                b.style.bottom = '-50px';
+
+                const duration = Math.random() * 5000 + 4000;
+
+                document.body.appendChild(b);
+
+                const keyframes = [
+                    { transform: 'translateY(0) translateX(0)', opacity: 0.6 },
+                    { transform: `translateY(-110vh) translateX(${Math.random() * 100 - 50}px)`, opacity: 0 }
+                ];
+
+                const anim = b.animate(keyframes, {
+                    duration: duration,
+                    easing: 'ease-out'
+                });
+
+                anim.onfinish = () => b.remove();
+            }, 300);
+        }
+
+        // Init Tilt check (safe)
+        if (typeof VanillaTilt !== 'undefined') {
+            VanillaTilt.init(document.querySelector(".ticket-wrap"), {
+                max: 15,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.4,
+                gyroscope: true
+            });
+        }
+    </script>
+</body>
+
+</html>
