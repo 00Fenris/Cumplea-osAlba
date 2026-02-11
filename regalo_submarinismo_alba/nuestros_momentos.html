@@ -252,43 +252,8 @@
             Aquí guardo algunos de mis favoritos contigo.
         </p>
 
-        <div class="gallery">
-            <!-- FOTO 1 -->
-            <div class="card-frame" onclick="this.classList.toggle('active')">
-                <div class="photo-area">
-                    <!-- FOTO 1: Guarda tu foto como 'foto1.jpg' en la carpeta 'fotos' -->
-                    <img src="./fotos/foto1.jpg"
-                        onerror="this.src='https://via.placeholder.com/400x500?text=Tu+Foto+1'; this.style.opacity='0.5'">
-                </div>
-                <div class="caption">El Comienzo</div>
-            </div>
-
-            <!-- FOTO 2 -->
-            <div class="card-frame">
-                <div class="photo-area">
-                    <img src="./fotos/foto2.jpg"
-                        onerror="this.src='https://via.placeholder.com/400x500?text=Tu+Foto+2'; this.style.opacity='0.5'">
-                </div>
-                <div class="caption">Risas Juntos</div>
-            </div>
-
-            <!-- FOTO 3 -->
-            <div class="card-frame">
-                <div class="photo-area">
-                    <img src="./fotos/foto3.jpg"
-                        onerror="this.src='https://via.placeholder.com/400x500?text=Tu+Foto+3'; this.style.opacity='0.5'">
-                </div>
-                <div class="caption">Nuestra Aventura</div>
-            </div>
-
-            <!-- FOTO 4 -->
-            <div class="card-frame">
-                <div class="photo-area">
-                    <img src="./fotos/foto4.jpg"
-                        onerror="this.src='https://via.placeholder.com/400x500?text=Tu+Foto+4'; this.style.opacity='0.5'">
-                </div>
-                <div class="caption">Te Quiero</div>
-            </div>
+        <div class="gallery" id="gallery-grid">
+            <!-- Las fotos se generan con JS -->
         </div>
 
         <div class="love-note">
@@ -303,6 +268,29 @@
     </div>
 
     <script>
+        // CONFIGURACIÓN
+        const TOTAL_FOTOS = 13;
+
+        // Generar galería dinámica
+        const gallery = document.getElementById('gallery-grid');
+        const captions = ["El Comienzo", "Risas Juntos", "Nuestra Aventura", "Te Quiero", "Momentos", "Inolvidable", "Tú y Yo", "Sonrisas", "Viajes", "Locuras", "Magia", "Siempre", "Amor"];
+
+        for (let i = 1; i <= TOTAL_FOTOS; i++) {
+            const card = document.createElement('div');
+            card.className = 'card-frame';
+            card.onclick = function () { this.classList.toggle('active'); };
+
+            const captionText = captions[i - 1] || `Recuerdo #${i}`;
+
+            card.innerHTML = `
+                <div class="photo-area">
+                    <img src="./fotos/foto${i}.jpg" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500?text=Foto+${i}'; this.style.opacity='0.5'">
+                </div>
+                <div class="caption">${captionText}</div>
+            `;
+            gallery.appendChild(card);
+        }
+
         // Generar partículas doradas
         const container = document.getElementById('particles-js');
 
