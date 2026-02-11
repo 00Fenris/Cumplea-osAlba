@@ -4,237 +4,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestra Historia 💙</title>
+    <title>Nuestra Historia 🖤</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Pinyon+Script&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --gold: #d4af37;
-            --deep-blue: #0f2027;
-            --ocean-blue: #203a43;
-            --glass: rgba(255, 255, 255, 0.05);
+            --bg-color: #000000;
+            --text-color: #f0f0f0;
+            --accent-gold: #d4af37;
         }
 
         body {
-            background-color: var(--deep-blue);
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            min-height: 100vh;
-            color: white;
         }
 
-        /* --- FONDO ANIMADO (Igual que tarjeta cumple) --- */
-        .ocean-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% -20%, #1a4f6e, #0f2027 80%);
-            z-index: -2;
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
         }
 
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
+        /* --- HERO SECTION (Distancia) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
         }
 
-        .particle {
+        .hero::after {
+            content: '';
             position: absolute;
-            background: rgba(212, 175, 55, 0.4);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
-            animation: floatUp linear infinite;
+            bottom: 50px;
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, var(--text-color), transparent);
+            animation: scrollLine 2s infinite;
         }
 
-        @keyframes floatUp {
+        @keyframes scrollLine {
             0% {
-                transform: translateY(110vh) scale(0);
+                height: 0;
                 opacity: 0;
             }
 
-            20% {
-                opacity: 0.8;
+            50% {
+                height: 100px;
+                opacity: 1;
             }
 
             100% {
-                transform: translateY(-10vh) scale(1.5);
+                transform: translateY(50px);
                 opacity: 0;
             }
         }
 
-        /* --- CONTENIDO --- */
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        h1 {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 4rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, #d4af37);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        p.intro {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
-            margin: 0 auto 50px auto;
-            line-height: 1.6;
-            font-family: 'Cinzel', serif;
-        }
-
-        /* --- GALERÍA ESTILO PREMIUM --- */
-        .gallery {
+        .location-line {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            padding-bottom: 50px;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 20px;
         }
 
-        .card-frame {
-            background: var(--glass);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px 15px 60px 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            transition: all 0.5s ease;
-            position: relative;
-            width: 280px;
-            cursor: pointer;
-            border-radius: 2px;
+        .distance-marker {
+            width: 50px;
+            height: 1px;
+            background: var(--accent-gold);
         }
 
-        .card-frame::after {
-            /* Marco dorado fino */
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            pointer-events: none;
+        .main-title {
+            font-size: 4rem;
+            margin: 0;
+            line-height: 1.1;
+            background: linear-gradient(45deg, #fff, #999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .card-frame:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--gold);
-            z-index: 100;
+        .countdown {
+            margin-top: 40px;
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 50px;
         }
 
-        .photo-area {
-            width: 100%;
-            height: 350px;
-            background: rgba(0, 0, 0, 0.2);
+        .countdown span {
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        /* --- STORY SECTIONS (Parallax) --- */
+        .story-section {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .content-wrap {
+            display: flex;
+            align-items: center;
+            gap: 5%;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .story-section:nth-child(even) .content-wrap {
+            flex-direction: row-reverse;
+        }
+
+        .image-container {
+            flex: 1;
+            height: 70vh;
             overflow: hidden;
             position: relative;
+            border-radius: 2px;
         }
 
-        .photo-area img {
+        .image-container img {
             width: 100%;
-            height: 100%;
+            height: 120%;
+            /* Para efecto parallax */
             object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .card-frame:hover .photo-area img {
-            transform: scale(1.1);
-        }
-
-        .caption {
             position: absolute;
-            bottom: 20px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            color: var(--gold);
+            bottom: 0;
+            transition: transform 0.1s linear;
+        }
+
+        .text-container {
+            flex: 1;
+            padding: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        .text-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chapter-number {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
             letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
             text-transform: uppercase;
         }
 
-        /* --- NOTA FINAL --- */
-        .love-note {
-            margin-top: 50px;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 40px;
-            border: 1px solid var(--gold);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
+        .chapter-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            line-height: 1.4;
+            margin: 0 0 20px 0;
         }
 
-        .love-note::before,
-        .love-note::after {
-            content: "✦";
-            color: var(--gold);
-            font-size: 2rem;
-            position: absolute;
-        }
-
-        .love-note::before {
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .love-note::after {
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .love-note h3 {
-            color: var(--gold);
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            margin-top: 0;
-            letter-spacing: 3px;
-        }
-
-        .love-note p {
-            color: rgba(255, 255, 255, 0.9);
+        .chapter-desc {
+            font-size: 1rem;
+            opacity: 0.7;
             line-height: 1.8;
-            font-size: 1.1rem;
+            max-width: 400px;
         }
 
-        /* Mobile Adjustments */
+        /* --- FINAL --- */
+        .final-message {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle, #111 0%, #000 70%);
+        }
+
+        .final-date {
+            font-size: 5rem;
+            color: var(--accent-gold);
+            font-family: 'Playfair Display', serif;
+            margin: 20px 0;
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 3rem;
+            .content-wrap {
+                flex-direction: column !important;
+                gap: 20px;
             }
 
-            .card-frame {
+            .image-container {
                 width: 100%;
-                max-width: 320px;
+                height: 50vh;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .text-container {
+                padding: 10px;
+                text-align: center;
+            }
+
+            .chapter-text {
+                font-size: 1.8rem;
+            }
+
+            .location-line {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -242,76 +240,114 @@
 
 <body>
 
-    <div class="ocean-bg"></div>
-    <div class="particles" id="particles-js"></div>
+    <!-- PORTADA -->
+    <section class="hero">
+        <div class="location-line">
+            <span>Zamora</span>
+            <div class="distance-marker"></div>
+            <span>Alicante</span>
+        </div>
+        <h1 class="main-title">Cada kilómetro<br>vale la pena.</h1>
 
-    <div class="container">
-        <h1>Nuestra Historia</h1>
-        <p class="intro">
-            Hay momentos que valen por una vida entera.<br>
-            Aquí guardo algunos de mis favoritos contigo.
+        <div class="countdown" id="countdown">
+            Nos vemos en: <span id="days">0</span> días
+        </div>
+    </section>
+
+    <!-- FOTOS (Se rellenan con JS) -->
+    <div id="story-container"></div>
+
+    <!-- FINAL -->
+    <section class="final-message">
+        <p style="letter-spacing: 3px; text-transform: uppercase; opacity: 0.6;">Cuenta atrás para el</p>
+        <div class="final-date">20 FLB</div>
+        <p style="opacity: 0.8; max-width: 300px; line-height: 1.6;">
+            Porque da igual dónde estemos.<br>Siempre estamos juntos.
         </p>
-
-        <div class="gallery" id="gallery-grid">
-            <!-- Las fotos se generan con JS -->
-        </div>
-
-        <div class="love-note">
-            <h3>Feliz San Valentín</h3>
-            <p>
-                Gracias por llenar mi vida de estos momentos.
-                No necesito nada más que seguir sumando fotos a este álbum.
-                <br><br>
-                <strong>Tú y yo, siempre.</strong>
-            </p>
-        </div>
-    </div>
+    </section>
 
     <script>
-        // CONFIGURACIÓN
         const TOTAL_FOTOS = 12;
 
-        // Generar galería dinámica
-        const gallery = document.getElementById('gallery-grid');
-        const captions = ["El Comienzo", "Risas Juntos", "Nuestra Aventura", "Te Quiero", "Momentos", "Inolvidable", "Tú y Yo", "Sonrisas", "Viajes", "Locuras", "Magia", "Siempre", "Amor"];
+        // TEXTOS TEMPORALES (Editables)
+        // Puedes cambiar esto luego con tus propios textos
+        const TEXTOS = [
+            { title: "El Comienzo", desc: "Donde todo empezó..." },
+            { title: "Risas", desc: "Nuestros mejores momentos." },
+            { title: "Aventura", desc: "Explorando juntos." },
+            { title: "Nosotros", desc: "Simplemente tú y yo." },
+            { title: "Magia", desc: "Momentos únicos." },
+            { title: "Recuerdos", desc: "Para no olvidar nunca." },
+            { title: "Locura", desc: "Nuestras tonterías." },
+            { title: "Viajes", desc: "Descubriendo mundo." },
+            { title: "Amor", desc: "Lo que nos une." },
+            { title: "Cómplices", desc: "Mi mejor equipo." },
+            { title: "Tú", desc: "Mi persona favorita." },
+            { title: "Siempre", desc: "Por todo lo que viene." }
+        ];
+
+        const container = document.getElementById('story-container');
 
         for (let i = 1; i <= TOTAL_FOTOS; i++) {
-            const card = document.createElement('div');
-            card.className = 'card-frame';
-            card.onclick = function () { this.classList.toggle('active'); };
+            const section = document.createElement('section');
+            section.className = 'story-section';
 
-            const captionText = captions[i - 1] || `Recuerdo #${i}`;
+            const data = TEXTOS[i - 1] || { title: "Recuerdo", desc: "..." };
 
-            card.innerHTML = `
-                <div class="photo-area">
-                    <img src="./fotos/foto${i}.jpg" loading="lazy" onerror="this.src='https://via.placeholder.com/400x500?text=Foto+${i}'; this.style.opacity='0.5'">
+            section.innerHTML = `
+                <div class="content-wrap">
+                    <div class="image-container">
+                        <img src="./fotos/foto${i}.jpg" alt="Foto ${i}" class="parallax-img">
+                    </div>
+                    <div class="text-container">
+                        <span class="chapter-number">CAPÍTULO ${i}</span>
+                        <h2 class="chapter-text">${data.title}</h2>
+                        <p class="chapter-desc">${data.desc}</p>
+                    </div>
                 </div>
-                <div class="caption">${captionText}</div>
             `;
-            gallery.appendChild(card);
+            container.appendChild(section);
         }
 
-        // Generar partículas doradas
-        const container = document.getElementById('particles-js');
+        // --- PARALLAX EFFECT ---
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.story-section').forEach(section => {
+                const img = section.querySelector('.parallax-img');
+                const text = section.querySelector('.text-container');
 
-        function createParticle() {
-            const p = document.createElement('div');
-            p.classList.add('particle');
+                const rect = section.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
 
-            const size = Math.random() * 5 + 2;
-            p.style.width = size + 'px';
-            p.style.height = size + 'px';
+                // Si está visible
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    // Texto fade in
+                    if (rect.top < windowHeight * 0.75) {
+                        text.classList.add('visible');
+                    }
 
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.animationDuration = Math.random() * 10 + 10 + 's';
-            p.style.opacity = Math.random() * 0.5 + 0.2;
+                    // Parallax imagen (movimiento suave)
+                    const speed = 0.3; // Velocidad del efecto
+                    const offset = (rect.top - windowHeight / 2) * speed;
+                    img.style.transform = `translateY(${offset}px)`;
+                }
+            });
+        });
 
-            container.appendChild(p);
+        // --- COUNTDOWN (20 FEBRERO) ---
+        function updateCountdown() {
+            const now = new Date();
+            const target = new Date(now.getFullYear(), 1, 20); // Mes 1 es Febrero
+            if (now > target) target.setFullYear(now.getFullYear() + 1); // Si ya pasó, siguiente año (o ajustar)
 
-            setTimeout(() => { p.remove(); }, 20000);
+            // Ajuste específico para 2026 si estamos cerca
+            const target2026 = new Date('2026-02-20T00:00:00');
+
+            const diff = target2026 - now;
+            const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+            document.getElementById('days').innerText = days > 0 ? days : 0;
         }
-
-        setInterval(createParticle, 300);
+        updateCountdown();
     </script>
 </body>
 
