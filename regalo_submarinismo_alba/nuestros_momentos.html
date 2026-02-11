@@ -269,46 +269,43 @@
     <script>
         const TOTAL_FOTOS = 12;
 
-        // TEXTOS TEMPORALES (Editables)
-        // Puedes cambiar esto luego con tus propios textos
-        // TEXTOS PERSONALIZADOS (Versión ULTRA ROMÁNTICA)
-        const TEXTOS = [
-            { title: "Nuestro Refugio", desc: "El lugar donde el tiempo se detiene y solo existimos nosotros." }, // Foto 1
-            { title: "El Origen", desc: "Granada, testigo silencioso de cómo mi vida cambió para siempre." }, // Foto 2
-            { title: "Eternidad", desc: "Ese beso en Granada... el instante exacto donde supe que eras tú." }, // Foto 3
-            { title: "Destino", desc: "La familia que elegimos, al final todos los caminos me llevaban a ti." }, // Foto 4
-            { title: "Mi Ciudad, Tu Luz", desc: "Salamanca nunca brilló tanto como cuando tú pisaste sus calles." }, // Foto 5
-            { title: "Cima del Mundo", desc: "El mundo a nuestros pies en Alicante, pero yo solo tenía ojos para ti." }, // Foto 6
-            { title: "Hogar", desc: "Hogar no es un sitio, eres tú. Da igual dónde, mientras sea contigo." }, // Foto 7
-            { title: "Magia", desc: "Praga y la absoluta certeza de que contigo cada noche es inolvidable." }, // Foto 8
-            { title: "Complicidad", desc: "Entre risas y tortillas, descubrí que la felicidad cabe en una habitación pequeña." }, // Foto 9
-            { title: "Memorias", desc: "Instantes que guardo como tesoros. Momentos que no vuelven, pero se quedan." }, // Foto 10
-            { title: "Paz", desc: "Bajo esa sombra encontré mi lugar favorito en el mundo: a tu lado." }, // Foto 11
-            { title: "Infinito", desc: "Portugal fue solo el comienzo. La aventura de quererte no tiene fin." }  // Foto 12
+        // ORDEN CRONOLÓGICO LÓGICO (Basado en tu historia)
+        // 1. Erasmus (Pilsen/Praga) -> 2. Granada (Inicio) -> 3. Visitas -> 4. Viajes -> 5. Presente
+        const TIMELINE = [
+            { id: 9, title: "El Origen", desc: "Pilsen (Erasmus). Donde la casualidad nos cruzó y las tortillas nos unieron." },
+            { id: 8, title: "Praga", desc: "Noches eternas en República Checa. La magia empezaba a surgir." },
+            { id: 10, title: "Amistad", desc: "Erasmus. Momentos compartidos que se convirtieron en algo más." },
+            { id: 2, title: "Granada", desc: "Aquí empezó todo. El lugar donde pasamos de amigos a 'nosotros'." },
+            { id: 3, title: "Ese Beso", desc: "Granada. El instante exacto donde supe que no quería estar con nadie más." },
+            { id: 5, title: "Salamanca", desc: "Tu primera visita a mi ciudad. Ver sus calles contigo las hizo nuevas." },
+            { id: 6, title: "Alicante", desc: "El mundo a nuestros pies. Tú me enseñaste a amar el mar." },
+            { id: 7, title: "Hogar", desc: "Da igual si es en tu casa o en la mía. Hogar es donde estás tú." },
+            { id: 4, title: "Málaga", desc: "Reencuentros con la familia Erasmus, pero tú ya eras mi familia." },
+            { id: 12, title: "Aventura", desc: "Portugal. Kilómetros, música y la certeza de querer viajar siempre contigo." },
+            { id: 11, title: "Paz", desc: "Bajo esa sombra. Donde el mundo se para y solo importa el ahora." },
+            { id: 1, title: "Tú y Yo", desc: "El destino era esto. Despertar a tu lado. Te quiero." }
         ];
 
         const container = document.getElementById('story-container');
 
-        for (let i = 1; i <= TOTAL_FOTOS; i++) {
+        TIMELINE.forEach((item, index) => {
             const section = document.createElement('section');
             section.className = 'story-section';
-
-            const data = TEXTOS[i - 1] || { title: "Recuerdo", desc: "..." };
 
             section.innerHTML = `
                 <div class="content-wrap">
                     <div class="image-container">
-                        <img src="./fotos/foto${i}.jpg" alt="Foto ${i}" class="parallax-img">
+                        <img src="./fotos/foto${item.id}.jpg" alt="${item.title}" class="parallax-img">
                     </div>
                     <div class="text-container">
-                        <span class="chapter-number">CAPÍTULO ${i}</span>
-                        <h2 class="chapter-text">${data.title}</h2>
-                        <p class="chapter-desc">${data.desc}</p>
+                        <span class="chapter-number">CAPÍTULO ${index + 1}</span>
+                        <h2 class="chapter-text">${item.title}</h2>
+                        <p class="chapter-desc">${item.desc}</p>
                     </div>
                 </div>
             `;
             container.appendChild(section);
-        }
+        });
 
         // --- PARALLAX EFFECT ---
         window.addEventListener('scroll', () => {
