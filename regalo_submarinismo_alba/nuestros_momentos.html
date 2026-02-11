@@ -334,14 +334,11 @@
             });
         });
 
-        // --- COUNTDOWN (20 FEBRERO) ---
+        // --- COUNTDOWN (19 FEBRERO) ---
         function updateCountdown() {
             const now = new Date();
-            const target = new Date(now.getFullYear(), 1, 20); // Mes 1 es Febrero
-            if (now > target) target.setFullYear(now.getFullYear() + 1); // Si ya pasó, siguiente año (o ajustar)
-
-            // Ajuste específico para 2026 si estamos cerca
-            const target2026 = new Date('2026-02-20T00:00:00');
+            // Ajuste estricto a 19 Feb 2026 (o año actual)
+            const target2026 = new Date('2026-02-19T00:00:00');
 
             const diff = target2026 - now;
             const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
